@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Cardpack } from './cardpack';
 import { Formula } from './formula';
 import { Language } from './language';
-import { Materialvalues} from './materialvalues';
+import { Materialvalues } from './materialvalues';
 
 @Injectable()
 export class ScalesService {
@@ -13,9 +13,18 @@ export class ScalesService {
   static languagelocalkey = 'secde';
 
 
-  public readonly formulas: Array<Formula> = [];
-  public readonly materialvalues: Array<Materialvalues> = [];
-  public readonly languages: Array<Language> = [];
+  public readonly formulas: Array<Formula> = [
+    new Formula('gramm to ml', 'gramm to ml desc', (mat: Materialvalues, input: number) => input / mat.density),
+    new Formula('essloefel to ml', 'essloefel to ml desc', (mat: Materialvalues, input: number) => input * 15),
+  ];
+  public readonly materialvalues: Array<Materialvalues> = [
+    new Materialvalues('Flour', 'Flour', 0.7),
+    new Materialvalues('Sugar', 'Sugar', 0.75)
+  ];
+  public readonly languages: Array<Language> = [
+    new Language('english'),
+    new Language('german')
+  ];
 
 
   cardlist: Array<Cardpack> = [];
@@ -35,11 +44,9 @@ export class ScalesService {
     }
 
     /**
-     * TODO:
      * load number of cards
      * per card, load both selections
-     * reset read integer parameter to 1
-     * calculate result
+     * reset read integer parameter to 1 & calculate result
      */
 
     const n_string: string = localStorage.getItem(ScalesService.cardnumberkey);
@@ -53,59 +60,97 @@ export class ScalesService {
     }
 
 
-let i = 0;
+    let i = 0;
 
-this.cardlist = [];
-for (i = 0; i < n; i++) {
-  const c = new Cardpack();
-  c.formula = localStorage.getItem(ScalesService.cardformulalocalkey + i.toString());
-  c.material = localStorage.getItem(ScalesService.cardmateriallocalkey + i.toString());
-   this.cardlist.push(c);
-   this.setValue(i, 1);
-}
+    this.cardlist = [];
+    for (i = 0; i < n; i++) {
+      const c = new Cardpack();
+      let form_string = localStorage.getItem(ScalesService.cardformulalocalkey + i.toString());
+      let mat_string = localStorage.getItem(ScalesService.cardmateriallocalkey + i.toString());
+      if (form_string && this.getFormula(form_string)) {
+        c.formula = this.getFormula(form_string);
+      } else {
+        c.formula = this.formulas[0];
+      }
+      if (mat_string && this.getMaterial(mat_string)) {
+        c.material = this.getMaterial(mat_string);
+      } else {
+        c.material = this.materialvalues[0];
+      }
+
+      this.cardlist.push(c);
+      this.setValue(i, 1);
+    }
 
 
   }
 
 
   getLanguage(language_id: string): Language {
-      let i = 0;
-      for (i = 0; i < this.languages.length; i++) {
-        if (this.languages[i].id === language_id) {
-            return this.languages[i];
-        }
+    let i = 0;
+    for (i = 0; i < this.languages.length; i++) {
+      if (this.languages[i].id === language_id) {
+        return this.languages[i];
       }
-      return null;
+    }
+    return null;
+  }
+
+  getMaterial(short_name: string): Materialvalues {
+    let i = 0;
+    for (i = 0; i < this.materialvalues.length; i++) {
+      if (this.materialvalues[i].short_name === short_name) {
+        return this.materialvalues[i];
+      }
+    }
+    return null;
+  }
+
+  getFormula(short_name: string): Formula {
+    let i = 0;
+    for (i = 0; i < this.formulas.length; i++) {
+      if (this.formulas[i].short_name === short_name) {
+        return this.formulas[i];
+      }
+    }
+    return null;
   }
 
   setLanguage(language: Language): void {
+    console.log('setting Language');
     this.language = language;
     localStorage.setItem(ScalesService.languagelocalkey, language.id);
   }
 
   setMaterial(index: number, material: Materialvalues): void {
     console.log('setting Material');
-    // TODO
+    this.cardlist[index].material = material;
+    localStorage.setItem(ScalesService.cardmateriallocalkey + index.toString, material.short_name);
   }
 
   setFormula(index: number, formula: Formula): void {
     console.log('setting Formula');
-    // TODO
+    this.cardlist[index].formula = formula;
+    localStorage.setItem(ScalesService.cardformulalocalkey + index.toString, formula.short_name);
   }
 
   setValue(index: number, value: number): void {
     console.log('setting value');
-    // TODO
+    if (value) {
+      this.cardlist[index].input = value;
+      this.cardlist[index].updateOutput();
+    }
   }
 
   addCard(): void {
-    // TODO: set values
     const c = new Cardpack();
     const i = this.cardlist.length;
+    c.formula = this.formulas[0];
+    c.material = this.materialvalues[0];
     this.cardlist.push(c);
     this.setValue(i, 1);
-    localStorage.setItem(ScalesService.cardformulalocalkey + i.toString(), c.formula);
-    localStorage.setItem(ScalesService.cardmateriallocalkey + i.toString(), c.material);
+    localStorage.setItem(ScalesService.cardformulalocalkey + i.toString(), c.formula.short_name);
+    localStorage.setItem(ScalesService.cardmateriallocalkey + i.toString(), c.material.long_name);
   }
 
   removeCard(): void {

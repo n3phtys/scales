@@ -1,5 +1,8 @@
 export class Materialvalues {
-    short_name: string;
-    long_name: string;
-    density: number;
+    constructor(
+    public short_name: string,
+    public long_name: string,
+    public density: number) {
+
+    }
 }

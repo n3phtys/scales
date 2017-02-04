@@ -1,3 +1,5 @@
 export class Language {
-    id: string;
+    constructor(public id: string) {
+
+    }
 }
