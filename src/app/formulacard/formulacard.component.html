@@ -9,7 +9,7 @@
   <select (change)="formulaSelected($event)" [ngModel]="card.formula_idx">
     <option *ngFor="let f of scalesService.formulas; let k = index" [value]="k">{{f.short_name}}</option>
   </select>
-  <label>{{card.output}}</label>
+  <label>{{card.output  | number : '1.0-3'}}</label>
   <button *ngIf="visibleRemove" (click)="deletePressed()">remove</button>
 </p>
 </div>
