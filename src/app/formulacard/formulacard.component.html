@@ -5,7 +5,7 @@
   </select>
 </header>
 <p>
-  <input type="number" name="quantity" [ngModel]="card.input" (change)="valueChanged($event.target.value)" (onkeypressed)="valueChanged($value)"  min="0" step="0.1" max="1000">
+  <input type="number" name="quantity" [(ngModel)]="card.input" (change)="valueChanged()" (keyup)="valueChanged()"  min="0" step="0.1" max="1000">
   <select (change)="formulaSelected($event)" [ngModel]="card.formula_idx">
     <option *ngFor="let f of scalesService.formulas; let k = index" [value]="k">{{f.short_name}}</option>
   </select>

@@ -34,10 +34,8 @@ export class FormulacardComponent implements OnInit {
     }
   }
 
-  valueChanged(i: number): void {
-    //const i = event.target.value;
-    console.log("Value Changed to " + i.toString());
-    this.scalesService.setValue(this.index, i);
+  valueChanged(): void {
+    this.scalesService.setValue(this.index, this.card.input);
   }
 
   deletePressed(): void {
