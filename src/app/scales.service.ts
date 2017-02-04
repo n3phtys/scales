@@ -40,7 +40,7 @@ export class ScalesService {
     if (language_string && this.getLanguage(language_string)) {
       this.language = this.getLanguage(language_string);
     } else {
-      this.language = this.languages[0];
+      this.language = null; // this.languages[0];
     }
 
     /**
@@ -125,13 +125,13 @@ export class ScalesService {
   setMaterial(index: number, material: Materialvalues): void {
     console.log('setting Material');
     this.cardlist[index].material = material;
-    localStorage.setItem(ScalesService.cardmateriallocalkey + index.toString, material.short_name);
+    localStorage.setItem(ScalesService.cardmateriallocalkey + index.toString(), material.short_name);
   }
 
   setFormula(index: number, formula: Formula): void {
     console.log('setting Formula');
     this.cardlist[index].formula = formula;
-    localStorage.setItem(ScalesService.cardformulalocalkey + index.toString, formula.short_name);
+    localStorage.setItem(ScalesService.cardformulalocalkey + index.toString(), formula.short_name);
   }
 
   setValue(index: number, value: number): void {
@@ -148,6 +148,8 @@ export class ScalesService {
     c.formula = this.formulas[0];
     c.material = this.materialvalues[0];
     this.cardlist.push(c);
+    const n = this.cardlist.length;
+    localStorage.setItem(ScalesService.cardnumberkey, n.toString());
     this.setValue(i, 1);
     localStorage.setItem(ScalesService.cardformulalocalkey + i.toString(), c.formula.short_name);
     localStorage.setItem(ScalesService.cardmateriallocalkey + i.toString(), c.material.long_name);

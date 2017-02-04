@@ -2,10 +2,10 @@ import {Materialvalues} from './materialvalues';
 import {Formula} from './formula';
 
 export class Cardpack {
-    input: number;
-    formula: Formula;
-    material: Materialvalues;
-    output: number;
+    public input: number;
+    public formula: Formula;
+    public material: Materialvalues;
+    public output: number;
 
     updateOutput(): void {
         console.log("Cardpack updated, contains: ");

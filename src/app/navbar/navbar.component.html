@@ -1,12 +1,57 @@
 <div>
-  navbar works!
+      <h1>Scales</h1>
+    <div class="w3-btn-bar">
+    <button onclick="document.getElementById('language_modal').style.display='block'" class="w3-btn">Language</button>
+    
+    <button onclick="document.getElementById('info_modal').style.display='block'" class="w3-btn">Info</button>
+    <button class="w3-btn" (click)="addPressed()" >Add Card</button>
+    </div>
 
-  <label>Title</label>
-  <button>Info</button>
-  <button>Language</button>
-  <button>Add Card</button>
+  
 
 
-  <div>language modal</div>
-  <div>info modal</div>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  <div id="language_modal" class="w3-modal">
+    <div class="w3-modal-content w3-card-8">
+      <header class="w3-container w3-teal"> 
+        <h2>Modal Header</h2>
+      </header>
+      <div class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal Footer</p>
+      </footer>
+    </div>
+  </div>
+
+  <div id="info_modal" class="w3-modal">
+    <div class="w3-modal-content w3-card-8">
+      <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('info_modal').style.display='none'" 
+        class="w3-closebtn">&times;</span>
+        <h2>Modal Header</h2>
+      </header>
+      <div class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Modal Footer</p>
+      </footer>
+    </div>
+  </div>
+
 </div>
