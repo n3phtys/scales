@@ -4,17 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FormulacardComponent } from './formulacard/formulacard.component';
+import { ScalesService } from './scales.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    FormulacardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ScalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
