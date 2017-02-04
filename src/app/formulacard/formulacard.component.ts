@@ -21,17 +21,23 @@ export class FormulacardComponent implements OnInit {
   constructor(public scalesService: ScalesService) { }
 
   formulaSelected(event: any): void {
-    const f = event.target.value as Formula;
+    const f = event.target.value as number;
     if (f) {
-      this.scalesService.setFormula(this.index, f);
+      this.scalesService.setFormula(this.index, this.scalesService.formulas[f]);
     }
   }
 
   materialSelected(event: any): void {
-    const m = event.target.value as Materialvalues;
+    const m = event.target.value as number;
     if (m) {
-      this.scalesService.setMaterial(this.index, m);
+      this.scalesService.setMaterial(this.index, this.scalesService.materialvalues[m]);
     }
+  }
+
+  valueChanged(i: number): void {
+    //const i = event.target.value;
+    console.log("Value Changed to " + i.toString());
+    this.scalesService.setValue(this.index, i);
   }
 
   deletePressed(): void {
