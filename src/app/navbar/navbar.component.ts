@@ -12,6 +12,9 @@ export class NavbarComponent implements OnInit {
   constructor(public scalesService: ScalesService) { }
 
   ngOnInit() {
+    if (this.scalesService.language == null) {
+      document.getElementById('language_modal_btn').click();
+    }
   }
 
 

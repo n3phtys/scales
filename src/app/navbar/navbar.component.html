@@ -1,7 +1,7 @@
 <div>
       <h1>Scales</h1>
     <div class="w3-btn-bar">
-    <button onclick="document.getElementById('language_modal').style.display='block'" class="w3-btn">Language</button>
+    <button  id="language_modal_btn" onclick="document.getElementById('language_modal').style.display='block'" class="w3-btn">Language</button>
     
     <button onclick="document.getElementById('info_modal').style.display='block'" class="w3-btn">Info</button>
     <button class="w3-btn w3-teal" (click)="addPressed()" >
@@ -9,17 +9,6 @@
     </button>
     </div>
 
-  
-
-
-
-
-
-  
-
-
-
-  
 
 
 
@@ -27,15 +16,17 @@
   <div id="language_modal" class="w3-modal">
     <div class="w3-modal-content w3-card-8">
       <header class="w3-container w3-teal"> 
-        <h3>Modal Header</h3>
+        <h3>Select your language</h3>
       </header>
       <div class="w3-container">
 
-<div *ngFor="let l of scalesService.languages" class="margined" >
-    <div class="w3-container w3-center" (click)="languagePressed(l)">
+<div *ngFor="let l of scalesService.languages" class="margined w3-center"  (click)="languagePressed(l)">
+    <div>
     <img [src]="l.flag_url" [alt]="l.id" width="112" height="70">
-      <label>{{l.id}}</label>
     </div>
+    <div class="w3-center">
+      <label>{{l.localized_name}}</label>
+      </div>
   </div>
 
 
