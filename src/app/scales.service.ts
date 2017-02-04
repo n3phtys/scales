@@ -22,8 +22,8 @@ export class ScalesService {
     new Materialvalues('Sugar', 'Sugar', 0.75)
   ];
   public readonly languages: Array<Language> = [
-    new Language('english'),
-    new Language('german')
+    new Language('english', 'https://i2.wp.com/expatessentials.net/wp-content/uploads/2014/12/US-UK_Flag.jpg?fit=2500%2C1325'),
+    new Language('german', 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1280px-Flag_of_Germany.svg.png')
   ];
 
 

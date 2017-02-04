@@ -9,17 +9,18 @@ import { Language } from '../language';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public _exampleService: ScalesService) { }
+  constructor(public scalesService: ScalesService) { }
 
   ngOnInit() {
   }
 
 
   addPressed(): void {
-    this._exampleService.addCard();
+    this.scalesService.addCard();
   }
 
   languagePressed(language: Language): void {
-    this._exampleService.setLanguage(language);
+    this.scalesService.setLanguage(language);
+    document.getElementById('language_modal').style.display = 'none';
   }
 }
