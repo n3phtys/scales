@@ -1,0 +1,13 @@
+{
+	"apptitle": "Scales",
+    "selectlanguage": "Select your language",
+    "language": "Language",
+    "newcard": "New Card",
+    "info": "Info",
+    "flour": "Flour",
+    "sugar": "Suggar",
+    "grammtoml": "gramms to milliliters",
+    "essloefeltoml": "tablespoons to milliliters",
+    "howdoesthiswork": "How does this work?",
+    "appexplanation": "Each card on this website asks for a (kitchen-)material, a conversion formula, and a numeric input. Based on this, it computes the conversion directly on every input, showing the result in blue.\nIf required one can also create additional cards to list multiple conversions at once. Those additional cards are persisted locally for future use, but can also be deleted by the user by pressing the big black remove button on the bottom."
+}

@@ -1,11 +1,11 @@
 <div>
-      <h1>Scales</h1>
+      <h1>{{scalesService.languagedata.apptitle}}</h1>
     <div class="w3-btn-bar">
-    <button  id="language_modal_btn" onclick="document.getElementById('language_modal').style.display='block'" class="w3-btn">Language</button>
+    <button  id="language_modal_btn" onclick="document.getElementById('language_modal').style.display='block'" class="w3-btn">{{scalesService.languagedata.language}}</button>
     
-    <button onclick="document.getElementById('info_modal').style.display='block'" class="w3-btn">Info</button>
+    <button onclick="document.getElementById('info_modal').style.display='block'" class="w3-btn">{{scalesService.languagedata.info}}</button>
     <button class="w3-btn w3-teal" (click)="addPressed()" >
-      New Card <span class="glyphicon glyphicon-plus"></span>
+      {{scalesService.languagedata.newcard}} <span class="glyphicon glyphicon-plus"></span>
     </button>
     </div>
 
@@ -16,7 +16,7 @@
   <div id="language_modal" class="w3-modal">
     <div class="w3-modal-content w3-card-8">
       <header class="w3-container w3-teal"> 
-        <h3>Select your language</h3>
+        <h3>{{scalesService.languagedata.selectlanguage}}</h3>
       </header>
       <div class="w3-container">
 
@@ -44,14 +44,10 @@
       <header class="w3-container w3-teal"> 
         <span onclick="document.getElementById('info_modal').style.display='none'" 
         class="w3-closebtn">&times;</span>
-        <h3>How does this work?</h3>
+        <h3>{{scalesService.languagedata.howdoesthiswork}}</h3>
       </header>
       <div class="w3-container">
-        <p>Every card has a material selector, a formula selector, and a number input field. 
-          The result of the formula is shown immediately on the right side.
-        </p>
-
-        <p>You can add additional cards or remove them via the plus and remove buttons.</p>
+        <p>{{scalesService.languagedata.appexplanation}}</p>
 
       </div>
       <footer class="w3-container w3-teal">

@@ -1,7 +1,7 @@
 <div class="w3-panel w3-card-4" *ngIf="card">
   <header class="w3-container margined"> 
   <select class="w3-select" name="option"  [ngModel]="card.material_idx" (change)="materialSelected($event)">
-    <option *ngFor="let m of scalesService.materialvalues; let k = index" [ngValue]="k">{{m.short_name}}</option>
+    <option *ngFor="let m of scalesService.materialvalues; let k = index" [ngValue]="k">{{scalesService.languagedata[m.short_name]}}</option>
   </select>
 </header>
 
@@ -13,7 +13,7 @@
   <div class="w3-third">
    
    <select class="w3-select w3-border"  (change)="formulaSelected($event)" [ngModel]="card.formula_idx">
-    <option *ngFor="let f of scalesService.formulas; let k = index" [value]="k">{{f.short_name}}</option>
+    <option *ngFor="let f of scalesService.formulas; let k = index" [value]="k">{{scalesService.languagedata[f.short_name]}}</option>
   </select>
 
   </div>

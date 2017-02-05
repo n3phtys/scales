@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import { Cardpack } from './cardpack';
 import { Formula } from './formula';
 import { Language } from './language';
 import { Materialvalues } from './materialvalues';
+import { Languagedata } from './languagedata';
 
 @Injectable()
 export class ScalesService {
@@ -14,12 +21,12 @@ export class ScalesService {
 
 
   public readonly formulas: Array<Formula> = [
-    new Formula('gramm to ml', 'gramm to ml desc', (mat: Materialvalues, input: number) => input / mat.density),
-    new Formula('essloefel to ml', 'essloefel to ml desc', (mat: Materialvalues, input: number) => input * 15),
+    new Formula('grammtoml', 'grammtomldesc', (mat: Materialvalues, input: number) => input / mat.density),
+    new Formula('essloefeltoml', 'essloefeltomldesc', (mat: Materialvalues, input: number) => input * 15),
   ];
   public readonly materialvalues: Array<Materialvalues> = [
-    new Materialvalues('Flour', 'Flour', 0.7),
-    new Materialvalues('Sugar', 'Sugar', 0.75)
+    new Materialvalues('flour', 'flour', 0.7),
+    new Materialvalues('sugar', 'sugar', 0.75)
   ];
   public readonly languages: Array<Language> = [
     new Language('english', 'https://i2.wp.com/expatessentials.net/wp-content/uploads/2014/12/US-UK_Flag.jpg?fit=2500%2C1325', 'english'),
@@ -32,9 +39,21 @@ export class ScalesService {
   cardlist: Array<Cardpack> = [];
   language: Language;
 
+  languagedata: Languagedata =  {
+    apptitle: 'Scales',
+    selectlanguage: 'Select your language',
+    language: 'n/a',
+    newcard: 'n/a',
+    info: 'n/a',
+    flour: 'n/a',
+    sugar: 'n/a',
+    grammtoml: 'n/a',
+    essloefeltoml: 'n/a',
+    howdoesthiswork: 'n/a',
+    appexplanation: 'n/a'
+};
 
-
-  constructor() {
+  constructor(private http: Http) {
 
     console.log('ScalesService was created');
 
@@ -42,8 +61,14 @@ export class ScalesService {
     if (language_string && this.getLanguage(language_string)) {
       this.language = this.getLanguage(language_string);
       console.log('Using language = ' + this.language.id);
+      if(this.language) {
+        http.get('/languages/' + this.language.id + '.json').map((res: Response) => <Languagedata> res.json())
+    .subscribe(value => this.languagedata = value);
+      }
     } else {
       this.language = null; // this.languages[0];
+      http.get('/languages/' + 'english' + '.json').map((res: Response) => <Languagedata> res.json())
+    .subscribe(value => this.languagedata = value);
     }
 
     /**
@@ -147,6 +172,10 @@ export class ScalesService {
     console.log('setting Language');
     this.language = language;
     localStorage.setItem(ScalesService.languagelocalkey, language.id);
+    if (this.language) {
+    this.http.get('/languages/' + this.language.id + '.json').map((res: Response) => <Languagedata> res.json())
+    .subscribe(value => this.languagedata = value);
+    }
   }
 
   setMaterial(index: number, material: Materialvalues): void {

@@ -1,0 +1,13 @@
+{
+	"apptitle": "Scales",
+    "selectlanguage": "Wählen Sie ihre Sprache",
+    "language": "Sprache",
+    "newcard": "Neue Karte",
+    "info": "Info",
+    "flour": "Mehl",
+    "sugar": "Zucker",
+    "grammtoml": "Gramm zu Milliliter",
+    "essloefeltoml": "Esslöffel zu Milliliter",
+    "howdoesthiswork": "Wie funktioniert diese Webseite?",
+    "appexplanation": "Jede Karte auf der Webseite erlaubt es Küchenmaterial, Art der Umrechnung, und auch die Menge einzustellen.\nAnschließend wird die Umrechnung wie erwünscht ausgeführt und in blau angezeigt.\nFür den Fall, dass mehrere Umrechnungen zur gleichen Zeit gebraucht werden, kann man sich zusätzliche Karten anlegen oder sie auch wieder löschen. Die Webseite speichert zusätzlich angelegte Karten und Spracheinstellungen persistent ab."
+}
