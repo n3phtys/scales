@@ -1,0 +1,9 @@
+{
+  "name": "Scales Küchenhilfe",
+  "description": "Umrechnen von Küchenwaren!",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "aliceblue",
+  "background_color": "green"
+}
