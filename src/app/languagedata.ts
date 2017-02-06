@@ -6,6 +6,10 @@ export interface Languagedata {
     info: string;
     flour: string;
     sugar: string;
+    margarine: string;
+    bakingsoda: string;
+    oil: string;
+    milk: string;
     grammtoml: string;
     essloefeltoml: string;
     howdoesthiswork: string;

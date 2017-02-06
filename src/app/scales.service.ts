@@ -25,8 +25,12 @@ export class ScalesService {
     new Formula('essloefeltoml', 'essloefeltomldesc', (mat: Materialvalues, input: number) => input * 15),
   ];
   public readonly materialvalues: Array<Materialvalues> = [
-    new Materialvalues('flour', 'flour', 0.7),
-    new Materialvalues('sugar', 'sugar', 0.75)
+    new Materialvalues('flour', 'flour', 0.55),
+    new Materialvalues('sugar', 'sugar', 0.75),
+    new Materialvalues('margarine', 'margarine', 0.95),
+    new Materialvalues('bakingsoda', 'bakingsoda', 2.22),
+    new Materialvalues('oil', 'oil', 0.93),
+    new Materialvalues('milk', 'milk', 1.032)
   ];
   public readonly languages: Array<Language> = [
     new Language('english', 'https://i2.wp.com/expatessentials.net/wp-content/uploads/2014/12/US-UK_Flag.jpg?fit=2500%2C1325', 'english'),
@@ -47,6 +51,10 @@ export class ScalesService {
     info: 'n/a',
     flour: 'n/a',
     sugar: 'n/a',
+    margarine: 'n/a',
+    bakingsoda: 'n/a',
+    oil: 'n/a',
+    milk: 'n/a',
     grammtoml: 'n/a',
     essloefeltoml: 'n/a',
     howdoesthiswork: 'n/a',
