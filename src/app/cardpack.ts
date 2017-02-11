@@ -10,6 +10,7 @@ export class Cardpack {
     public output: number;
 
     updateOutput(): void {
+        console.log('material: ' + this.material.density);
         this.output = this.formula.compute(this.material, this.input);
     }
 }

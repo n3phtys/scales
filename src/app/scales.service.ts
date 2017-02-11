@@ -101,8 +101,8 @@ export class ScalesService {
     this.cardlist = [];
     for (i = 0; i < n; i++) {
       const c = new Cardpack();
-      let form_string = localStorage.getItem(ScalesService.cardformulalocalkey + i.toString());
-      let mat_string = localStorage.getItem(ScalesService.cardmateriallocalkey + i.toString());
+      const form_string = localStorage.getItem(ScalesService.cardformulalocalkey + i.toString());
+      const mat_string = localStorage.getItem(ScalesService.cardmateriallocalkey + i.toString());
       if (form_string && this.getFormula(form_string)) {
         c.formula = this.getFormula(form_string);
         c.formula_idx = this.indexOfFormula(form_string);

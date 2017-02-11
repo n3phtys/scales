@@ -30,7 +30,8 @@ export class FormulacardComponent implements OnInit {
   materialSelected(event: any): void {
     const m = event.target.value as number;
     if (m) {
-      this.scalesService.setMaterial(this.index, this.scalesService.materialvalues[m]);
+    const n = this.scalesService.materialvalues[m] as Materialvalues;
+      this.scalesService.setMaterial(this.index, n);
     }
   }
 
